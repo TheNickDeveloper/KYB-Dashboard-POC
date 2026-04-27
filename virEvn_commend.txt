@@ -1,0 +1,17 @@
+##Activate virtual env
+--> Scripts\Activate
+
+##Run application
+--> streamlit run app.py
+
+#Export required package
+--> pip freeze > requirements.txt
+
+#Run Streamlit
+--> streamlit run app.py
+
+#Eport required python package
+--> pip freeze > requirements.txt
+
+#Install required pytyho package
+--> pip install -r requirements.txt
