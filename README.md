@@ -1,10 +1,10 @@
-# KYB STP Automation Analytics PoC
+🛡 KYB STP Automation Analytics PoC
 
 This Proof of Concept (PoC) project demonstrates an end-to-end analytical dashboard designed to monitor and optimize **Straight-Through Processing (STP)** within a corporate onboarding (KYB) workflow.
 
 ---
 
-## 1. Dataset Overview (Dummy Data)
+## 📑 Dataset Overview (Dummy Data)
 The project utilizes a simulated dataset representing corporate application process logs. Each row represents a specific stage in the KYB lifecycle for a given application.
 
 ### Key Data Attributes:
@@ -23,7 +23,7 @@ The project utilizes a simulated dataset representing corporate application proc
 
 ---
 
-## 2. KYB Dashboard Functions
+## 📊 KYB Dashboard Functions
 The Streamlit-based dashboard translates raw process logs into actionable Management Information (MI) through several key views:
 
 * **Real-time KPI Monitoring**: Tracks Total Volume, Overall STP Rate, and Average Processing Time (comparing Auto vs. Manual).
@@ -31,6 +31,12 @@ The Streamlit-based dashboard translates raw process logs into actionable Manage
 * **Geographical Efficiency**: Breaks down STP rates by jurisdiction to identify regional data quality issues.
 * **Exception Analysis**: A deep dive into the most frequent manual triggers to prioritize system refinements.
 * **Risk-Based Insights**: Correlates Risk Tiers with processing modes to ensure compliance standards are met.
+
+---
+
+## 🪴 Application UIUX
+
+![image](https://github.com/TheNickDeveloperKYB-Dashboard-POC/main/application_uiux.png)
 
 ---
 
