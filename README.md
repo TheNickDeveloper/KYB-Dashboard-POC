@@ -36,7 +36,7 @@ The Streamlit-based dashboard translates raw process logs into actionable Manage
 
 ## 🪴 Application UIUX
 
-![image](https://github.com/TheNickDeveloperKYB-Dashboard-POC/main/application_uiux.png)
+![image](https://github.com/TheNickDeveloper/KYB-Dashboard-POC/blob/main/application_uiux.png)
 
 ---
 
