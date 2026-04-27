@@ -4,6 +4,17 @@ This Proof of Concept (PoC) project demonstrates an end-to-end analytical dashbo
 
 ---
 
+## 🪴 Application UIUX
+
+![image](https://github.com/TheNickDeveloper/KYB-Dashboard-POC/blob/main/application_uiux.png)
+
+---
+
+## 🧷 Websit Page
+[Visit KYB Straight-Through Processing (STP) Dashboard](https://kyb-dashboard-poc.streamlit.app/)
+
+---
+
 ## 📑 Dataset Overview (Dummy Data)
 The project utilizes a simulated dataset representing corporate application process logs. Each row represents a specific stage in the KYB lifecycle for a given application.
 
@@ -31,12 +42,6 @@ The Streamlit-based dashboard translates raw process logs into actionable Manage
 * **Geographical Efficiency**: Breaks down STP rates by jurisdiction to identify regional data quality issues.
 * **Exception Analysis**: A deep dive into the most frequent manual triggers to prioritize system refinements.
 * **Risk-Based Insights**: Correlates Risk Tiers with processing modes to ensure compliance standards are met.
-
----
-
-## 🪴 Application UIUX
-
-![image](https://github.com/TheNickDeveloper/KYB-Dashboard-POC/blob/main/application_uiux.png)
 
 ---
 
