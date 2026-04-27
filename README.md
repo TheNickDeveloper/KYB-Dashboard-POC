@@ -1,4 +1,4 @@
-🛡 KYB STP Automation Analytics PoC
+# 🛡 KYB STP Automation Analytics PoC
 
 This Proof of Concept (PoC) project demonstrates an end-to-end analytical dashboard designed to monitor and optimize **Straight-Through Processing (STP)** within a corporate onboarding (KYB) workflow.
 
