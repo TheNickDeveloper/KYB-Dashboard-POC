@@ -2,15 +2,11 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+# Dashboard class for KYB STP Automation metrics and visualizations.
 class KYBDashboard:
-    """
-    Dashboard class for KYB STP Automation metrics and visualizations.
-    """
 
+    #Initialize the dashboard by loading data and calculating KPIs.
     def __init__(self, data_file=None, page_title=None, stage_order=None, color_map=None):
-        """
-        Initialize the dashboard by loading data and calculating KPIs.
-        """
         self.data_file = data_file
         self.page_title = page_title
         self.stage_order = stage_order
@@ -19,13 +15,8 @@ class KYBDashboard:
         self.df = self.load_data()
         self.kpis = self.calculate_kpis()
 
-    def load_data(self):
-        """
-        Load and preprocess the KYB data from Excel file.
-
-        Returns:
-            pd.DataFrame: Processed dataframe with duration calculations.
-        """
+    # Load and preprocess the KYB data from Excel file.
+    def load_data(self)-> pd.DataFrame:
         try:
             df = pd.read_excel(self.data_file)
             df['Entry_Timestamp'] = pd.to_datetime(df['Entry_Timestamp'])
@@ -39,13 +30,8 @@ class KYBDashboard:
             st.error(f"Error loading data: {e}")
             return pd.DataFrame()
 
-    def calculate_kpis(self):
-        """
-        Calculate key performance indicators from the data.
-
-        Returns:
-            dict: Dictionary containing calculated KPIs.
-        """
+    # Calculate key performance indicators from the data.
+    def calculate_kpis(self)-> dict:
         if self.df.empty:
             return {}
 
@@ -64,13 +50,8 @@ class KYBDashboard:
             'avg_manual_time': avg_manual_time
         }
 
-    def create_funnel_chart(self):
-        """
-        Create the automation leakage funnel chart.
-
-        Returns:
-            plotly.graph_objects.Figure: Funnel chart figure.
-        """
+    # Create the automation leakage funnel chart.
+    def create_funnel_chart(self) -> px.Figure:
         funnel_df = self.df.groupby(['Stage', 'Processing_Mode']).size().reset_index(name='Volume')
         fig = px.funnel(funnel_df, x='Volume', y='Stage', color='Processing_Mode',
                         category_orders={"Stage": self.stage_order},
@@ -78,13 +59,8 @@ class KYBDashboard:
                         title="Where do cases drop out of Automation?")
         return fig
 
-    def create_country_chart(self):
-        """
-        Create the STP rate by country chart.
-
-        Returns:
-            plotly.graph_objects.Figure: Bar chart figure.
-        """
+    # Create the STP rate by country chart.
+    def create_country_chart(self) -> px.Figure:
         country_mode = self.df.groupby(['Registration_Country', 'Processing_Mode']).size().unstack(fill_value=0)
         country_mode['STP_Rate'] = (country_mode['Automated'] / (country_mode['Automated'] + country_mode['Manual'])) * 100
         country_mode = country_mode.reset_index()
@@ -94,36 +70,24 @@ class KYBDashboard:
                      color_discrete_sequence=['#636EFA'])
         return fig
 
-    def create_exceptions_chart(self):
-        """
-        Create the top manual exception reasons pie chart.
-
-        Returns:
-            plotly.graph_objects.Figure: Pie chart figure.
-        """
+    # Create the top manual exception reasons pie chart.
+    def create_exceptions_chart(self) -> px.Figure:
         exceptions = self.df[self.df['Exception_Reason'] != 'N/A']['Exception_Reason'].value_counts().reset_index()
         exceptions.columns = ['Reason', 'Count']
         fig = px.pie(exceptions, values='Count', names='Reason', hole=0.5,
                      color_discrete_sequence=px.colors.sequential.RdBu)
         return fig
 
-    def create_risk_chart(self):
-        """
-        Create the risk tier vs processing mode bar chart.
-
-        Returns:
-            plotly.graph_objects.Figure: Bar chart figure.
-        """
+    # Create the risk tier vs processing mode bar chart.
+    def create_risk_chart(self) -> px.Figure:
         risk_mode = self.df.groupby(['Risk_Tier', 'Processing_Mode']).size().reset_index(name='Count')
         fig = px.bar(risk_mode, x='Risk_Tier', y='Count', color='Processing_Mode',
                      barmode='group', title="Do High Risk tiers force Manual reviews?",
                      color_discrete_map=self.color_map)
         return fig
 
+    # Render the Streamlit dashboard UI.
     def render(self):
-        """
-        Render the Streamlit dashboard UI.
-        """
         st.set_page_config(page_title=self.page_title, layout="wide")
 
         st.title("📊 KYB Straight-Through Processing (STP) Dashboard")
